@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Forever, Tanush 🌹</title>
+    <style>
+        :root {
+            --hot-pink: #ff0054;
+            --rose-gold: #eecda3;
+            --soft-pink: #ffe5ec;
+            --sparkle: url('https://www.transparenttextures.com/patterns/stardust.png');
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #fb6f92, #ffb3c1);
+            background-image: var(--sparkle), linear-gradient(to bottom, #fb6f92, #ffb3c1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Rose Border Container */
+        .page-container {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            height: 80vh;
+            border: 15px solid transparent;
+            border-image: url('https://img.freepik.com/free-vector/hand-drawn-rose-border_23-2148818557.jpg') 30 round;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 0, 84, 0.4);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 10;
+        }
+
+        .slide { display: none; width: 100%; animation: glamFade 1s ease-in-out; }
+        .active { display: block; }
+
+        @keyframes glamFade {
+            from { opacity: 0; filter: blur(5px); transform: scale(0.9); }
+            to { opacity: 1; filter: blur(0); transform: scale(1); }
+        }
+
+        h1, h2 { color: var(--hot-pink); text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+
+        /* Blingy Buttons */
+        button {
+            background: linear-gradient(45deg, #ff0054, #ff5c8a);
+            color: white;
+            border: 2px solid #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 0, 84, 0.3);
+            transition: 0.3s;
+            margin: 10px;
+        }
+
+        button:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 20px rgba(255, 0, 84, 0.5); }
+
+        input {
+            padding: 15px;
+            border: 2px solid var(--soft-pink);
+            border-radius: 10px;
+            margin: 10px;
+            width: 70%;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* Scratch Card */
+        #scratch-wrapper {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            border: 4px solid var(--hot-pink);
+        }
+        canvas { position: absolute; top: 0; left: 0; z-index: 2; cursor: crosshair; }
+        .scratch-bg { width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+
+        /* Letter Box */
+        .letter {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #555;
+            background: rgba(255, 240, 245, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px dashed var(--hot-pink);
+            text-align: justify;
+        }
+
+        /* Floating Petals Effect */
+        .petal {
+            position: absolute;
+            background-color: #ffb3c1;
+            border-radius: 150% 0 150% 0;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: fall 5s infinite linear;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); left: calc(var(--left) + 20px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <div id="p1" class="slide active">
+            <h1>✨ Tanush's Portal ✨</h1>
+            <p>Enter the magic words, my love.</p>
+            <input type="text" id="user" placeholder="Your Name"><br>
+            <input type="password" id="pass" placeholder="Our Date (DDMM)"><br>
+            <button onclick="login()">Enter My Heart 💖</button>
+        </div>
+
+        <div id="p2" class="slide">
+            <h2>🌹 Scratch My Heart</h2>
+            <div id="scratch-wrapper">
+                <img src="7272.jpg" class="scratch-bg">
+                <canvas id="canvas" width="250" height="250"></canvas>
+            </div>
+            <p>Scratch to reveal a sweet face!</p>
+            <button onclick="go(3)">Next Slide ✨</button>
+        </div>
+
+        <div id="p3" class="slide">
+            <h2>📜 A Message for You</h2>
+            <div class="letter">
+                Tanush, they say life doesn't follow a script, but our story started with a literal 'fake' one. ✨<br><br>
+                We joined that group chat as partners with the one rule we weren't supposed to break: <b>don’t fall in love.</b> I think we both know I perfectly break following rules when it comes to you. <br><br>
+                Remembering December 14th still gives me butterflies—watching the chat freeze while you processed my confession... those five minutes felt like a lifetime, but your 'yes' was the best plot twist ever. Today, I’m asking you to keep being my real everything. 💞🎀<br><br>
+                Happy Propose Day! 💕🧿
+            </div>
+            <button onclick="go(4)">Continue... 🌹</button>
+        </div>
+
+        <div id="p4" class="slide">
+            <h2>💍 The Big Question</h2>
+            <p style="font-size: 22px;">Will you keep being my boyfriend, Tanush?</p>
+            <button onclick="go(5)">Yes! 💖</button>
+            <button onclick="go(5)">Of course Yesss! 😍</button>
+        </div>
+
+        <div id="p5" class="slide">
+            <div style="border: 5px solid var(--hot-pink); padding: 20px; background: #fff0f5;">
+                <h1 style="font-size: 20px;">🏆 OFFICIAL CERTIFICATE</h1>
+                <p>This certifies that</p>
+                <h2 style="border-bottom: 2px solid var(--hot-pink);">TANUSH BEHERA</h2>
+                <p>is the Best Boyfriend in the Universe.</p>
+                <p><i>Authorized by Your Girl ❤️</i></p>
+                <p>Valid: Forever & Always</p>
+            </div>
+            <p>Screenshot this and send it to me! 📸</p>
+        </div>
+    </div>
+
+    <script>
+        // Floating Petals Logic
+        for (let i = 0; i < 20; i++) {
+            let petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.width = Math.random() * 15 + 10 + 'px';
+            petal.style.height = petal.style.width;
+            petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+            petal.style.setProperty('--left', petal.style.left);
+            document.body.appendChild(petal);
+        }
+
+        function login() {
+            const u = document.getElementById('user').value.toLowerCase();
+            const p = document.getElementById('pass').value;
+            if(u === "tanush" && p === "1412") {
+                go(2);
+                initScratch();
+            } else {
+                alert("Only Tanush can enter! 🌹");
+            }
+        }
+
+        function go(n) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            document.getElementById('p' + n).classList.add('active');
+        }
+
+        function initScratch() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#ffb3c1';
+            ctx.fillRect(0, 0, 250, 250);
+            ctx.font = "20px Georgia";
+            ctx.fillStyle = "white";
+            ctx.textAlign = "center";
+            ctx.fillText("SCRATCH ME 🌹", 125, 135);
+
+            let isDrawing = false;
+            function scratch(e) {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                const y = (e.clientY || e.touches[0].clientY) - rect.top;
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 25, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            canvas.addEventListener('mousedown', () => isDrawing = true);
+            canvas.addEventListener('mouseup', () => isDrawing = false);
+            canvas.addEventListener('mousemove', scratch);
+            canvas.addEventListener('touchstart', (e) => { isDrawing = true; e.preventDefault(); });
+            canvas.addEventListener('touchend', () => isDrawing = false);
+            canvas.addEventListener('touchmove', (e) => { scratch(e); e.preventDefault(); });
+        }
+    </script>
+</body>
+</html>
